@@ -1029,10 +1029,11 @@ WHERE EMPNO IN (SELECT empno FROM exam_emp, exam_salgrade WHERE sal BETWEEN losa
 commit;
             
 --transaccion
+create table dept_tcl as select * from dept;
 
 Select * from dept_tcl;
 
-select into dept_tcl values (50,'database','seoul');
+insert into dept_tcl values (50,'database','seoul');
 
 update dept_tcl set loc= 'busan' where deptno =40;
 
@@ -1052,7 +1053,7 @@ select *from dept_tcl;
 
 --session
 
-delete from dept_tcl where deptno=50;
+delete from dept_tcl where deptno=40;
 
 select * from dept_tcl;
 
@@ -1063,3 +1064,55 @@ where deptno =30;
 commit;
 
 sql plus update dept_tcl set dname='database' where deptno=30;
+
+--DDL data definition language
+--create,change,delete  object
+--create, alter,drop 
+--create table, field name , field name 2
+
+create table EMP_DDL(
+ EMPNO NUMBER(4),
+ ENAME VARCHAR2(10),
+  JOB VARCHAR(9),
+  MGR NUMBER(4);
+  HIREDATE DATE,
+  SAL NUMBER(7,2)
+ COMM NUMBER (7,2),
+ DEPTNO NUMBER (2)
+ );
+
+DESC EMP
+
+--ALTER
+
+CREATE TABLE EMP_ALTER AS SELECT * FROM EMP;
+
+-- CREATE ONE COLUMN :ADD
+
+DESC EMP_ALTER;
+
+ALTER TABLE EMP_ALTER ADD HP VARCHAR2(20);
+SELECT * FROM EMP_ALTER;
+
+alter table emp_alter rename column hp to tel;
+
+-mod
+
+
+
+create table member(
+ id NUMBER(8),
+ name VARCHAR2(8),
+  ADDR VARCHAR2(50),
+  NATION CHAR(4),
+  EMAIL VARCHAR2 (50),
+  AGE NUMBER(7,2)
+ );
+
+DROP TABLE MEMBER;
+
+alter TABLE MEMBER ADD BIGO VARCHAR2(20);
+
+alter TABLE MEMBER MODIFY BIGO VARCHAR2(30);
+
+alter TABLE MEMBER RENAME COLUMN BIGO TO REMARK;
